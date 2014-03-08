@@ -2,7 +2,8 @@
   // Remember to copy files from the SDK's src/ directory to a
   // directory in your application on the server, such as php-sdk/
   require_once('php-sdk/facebook.php');
-
+$AppId='209721652515800';
+ $AppSecret='59042c293585417936e2c5ec2d8b06be';
   $config = array(
     'appId' => '209721652515800',
     'secret' => '6d4dc86a9b34d4a9ef23299b47ef24b1',
