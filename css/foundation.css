@@ -4034,12 +4034,13 @@ meta.foundation-mq-topbar {
     font-weight: normal;
     background: #333333; }
     .top-bar-section ul li > a.button {
-      background: #008cba;
+    		
+      background: #133783;
       font-size: 0.8125rem;
       padding-right: 15px;
       padding-left: 15px; }
       .top-bar-section ul li > a.button:hover {
-        background: #006887; }
+        background: #3b5998; }
     .top-bar-section ul li > a.button.secondary {
       background: #e7e7e7; }
       .top-bar-section ul li > a.button.secondary:hover {
@@ -4053,7 +4054,7 @@ meta.foundation-mq-topbar {
       .top-bar-section ul li > a.button.alert:hover {
         background: #d3290e; }
   .top-bar-section ul li:hover > a {
-    background: #272727;
+    background: #133783;
     color: white; }
   .top-bar-section ul li.active > a {
     background: #008cba;
@@ -4145,14 +4146,14 @@ meta.foundation-mq-topbar {
         .top-bar-section ul li .js-generated {
           display: none; }
     .top-bar-section li.hover > a:not(.button) {
-      background: #272727;
+      background: #133783;
       color: white; }
     .top-bar-section li a:not(.button) {
       padding: 0 15px;
       line-height: 45px;
-      background: #333333; }
+      background: #3b5998; }
       .top-bar-section li a:not(.button):hover {
-        background: #272727; }
+        background: #133783; }
     .top-bar-section .has-dropdown.moved {
       position: relative; }
       .top-bar-section .has-dropdown.moved > .dropdown {
@@ -4175,10 +4176,10 @@ meta.foundation-mq-topbar {
         line-height: 1;
         white-space: nowrap;
         padding: 12px 15px;
-        background: #333333; }
+        background: #3b5998; }
       .top-bar-section .dropdown li label {
         white-space: nowrap;
-        background: #333333; }
+        background: #3b5998; }
       .top-bar-section .dropdown li .dropdown {
         left: 100%;
         top: 0; }
@@ -4190,7 +4191,7 @@ meta.foundation-mq-topbar {
       height: 45px;
       width: 0; }
     .top-bar-section .has-form {
-      background: #333333;
+      background: #3b5998;
       padding: 0 15px;
       height: 45px; }
     .top-bar-section ul.right li .dropdown {
@@ -4199,7 +4200,7 @@ meta.foundation-mq-topbar {
       .top-bar-section ul.right li .dropdown li .dropdown {
         right: 100%; }
   .no-js .top-bar-section ul li:hover > a {
-    background: #272727;
+    background: #3b5998;
     color: white; }
   .no-js .top-bar-section ul li:active > a {
     background: #008cba;
@@ -4221,7 +4222,7 @@ meta.foundation-mq-topbar {
   height: 100%;
   position: absolute;
   overflow-y: auto;
-  background: #333333;
+  background: #3b5998;
   z-index: 1001;
   box-sizing: content-box; }
 
@@ -4248,7 +4249,7 @@ section.left-small, section.right-small {
     clear: both; }
 
 nav.tab-bar {
-  background: #333333;
+  background: #3b5998;
   color: white;
   height: 2.8125rem;
   line-height: 2.8125rem;
@@ -5567,9 +5568,11 @@ ul.off-canvas-list li label {
   background: none !important;
   border-top: none !important;
   padding: 0.4rem 0.95rem 0.4rem 0.95rem !important;
-  font-size: 0.775rem !important; }
+  font-size: 0.775rem !important; 
+  color:#F9F9F9;}
 
 ul.off-canvas-list li label.first {
+	color:#F9F9F9;
   padding-top: 0.75rem !important; }
 
 .zurb-links {
@@ -6801,6 +6804,7 @@ input[type="text"], input[type="password"], input[type="date"], input[type="date
 
 .commit h4 {
   margin-top: 10px; }
+  
 
 p.commit {
   margin-top: 5px; }
@@ -6814,3 +6818,7 @@ border-color: #133783;
   		border-color: #3b5998;
 background-color: #133783;
   }
+.uiMediaThumb {
+height: 206px;
+width: 206px;
+}
