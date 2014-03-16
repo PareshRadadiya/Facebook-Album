@@ -8,29 +8,34 @@
     <link rel="stylesheet" type="text/css" href="css/normalize.css">
        
       <link type="text/css" rel="stylesheet" href="css/foundation.css">
+
+          <link type="text/css" rel="stylesheet" href="lib/slideshow/css/supersized.css">
+            <link type="text/css" rel="stylesheet" href="lib/slideshow/theme/supersized.shutter.css">
+          
+ <link type="text/css" rel="stylesheet" href="css/fbalbum.css">
     <script src="js/vendor/modernizr.js"></script>
      <script src="js/vendor/jquery.js"></script>
      <script src="js/foundation.min.js"></script>
-    <script src="js/scripts.js"></script>
+      <script src="lib/slideshow/js/jquery.easing.min.js"></script>
+      <script src="lib/slideshow/js/supersized.3.2.7.min.js"></script>
+       <script src="lib/slideshow/theme/supersized.shutter.min.js"></script>
+<script src="lib/jquery.fullscreen-0.4.1.min.js"></script>
+
+    <script src="js/fbalbum.js"></script>
+    
     <script>
-  $(document).foundation();
-  
-  
+   
     $(document).ready(function() {
+    	$("#slides").hide();
   $.ajaxSetup({ cache: true });
   $.getScript('//connect.facebook.net/en_UK/all.js', function(){
     FB.init({
       appId: '<?php echo $AppId; ?>',
     });     
-    $('#loginbutton,#feedbutton').removeAttr('disabled');
+   
     FB.getLoginStatus(updateStatusCallback);
   });
 });
-function updateStatusCallback(response){
-  if (response.status === 'connected') {
-  	FB.api('/me/albums', showAlbums);
-  }
-}
 </script>
 </head>
 <body>
@@ -46,7 +51,7 @@ function updateStatusCallback(response){
     
   </ul>
 
-  <hr>
+
 
   <ul class="off-canvas-list">
     <li><label>Move</label></li>
@@ -71,7 +76,7 @@ function updateStatusCallback(response){
 <nav class="top-bar hide-for-small" data-topbar="">
   <ul class="title-area">
     <li class="name">
-      <h1><a href="#">Foundation</a></h1>
+      <h1><a href="#">Facebook</a></h1>
     </li>
   </ul>
   
@@ -102,7 +107,7 @@ function updateStatusCallback(response){
      
       <li class="divider"></li>
       <li class="has-form">
-        <a href="http://foundation.zurb.com/docs" class="small button">Log out</a>
+        <a href="http://foundation.zurb.com/docs" class="alert button expand">Log out</a>
     </li></ul>
   </section>
   </nav>
