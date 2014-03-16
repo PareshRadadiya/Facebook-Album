@@ -104,10 +104,10 @@ function showAlbums(response) {
 		albumids[key] = value.id;
 
 		//create html structure
-		var strHtml = '' + '<div id="album_' + key + '" class="large-4 small-6 columns"> ' + '<a href="#" class="album_link_' + key + '"><img style="height:200px;width:200px;" class="imgcover" id="album_cover_' + key + '" /></a>' + '<img id="loading_' + key + '" src="../img/ajax-loader.gif" /><div class="panel"><input class="checkboxSelect" id="checkbox_' + key + '" type="checkbox" value="' + value.id + '"><a for="checkbox_' + key + '" href="#" class="album_link_' + key + '"><h5>' + value.name + '</h5></a><label class="subheader">' + value.count + ' photos</label><ul class="button-group"><li><a title="Download" id="download_album_' + key + '" class="button success tiny step fi-download size-36"></a></li><li><a title="Move to Picasa" id="move_album_' + key + '" class="button success tiny">Move</a></li></ul>' + '</div></div>';
-
+		//var strHtml = '' + '<div id="album_' + key + '" class="large-4 small-6 columns"> ' + '<a href="#" class="album_link_' + key + '"><img style="height:200px;width:200px;" class="imgcover" id="album_cover_' + key + '" /></a>' + '<img id="loading_' + key + '" src="../img/ajax-loader.gif" /><div class="panel"><input class="checkboxSelect" id="checkbox_' + key + '" type="checkbox" value="' + value.id + '"><a for="checkbox_' + key + '" href="#" class="album_link_' + key + '"><h5>' + value.name + '</h5></a><label class="subheader">' + value.count + ' photos</label><ul class="button-group"><li><a title="Download" id="download_album_' + key + '" class="button success tiny step fi-download size-36"></a></li><li><a title="Move to Picasa" id="move_album_' + key + '" class="button success tiny">Move</a></li></ul>' + '</div></div>';
+var strHtml="<div class='medium-4 large-4 columns supporticons'><a href='javascript:show_albums_photos("+value.id+")' class='album_link_'" + key +"'><img class='uiMediaThumb'  id='album_cover_"+key+"'><h3>"+value.name+"</h3><p>"+value.count+"</p></a></div>";
 		$('#albums').append(strHtml);
-		FB.api('/' + value.cover_photo + '', function(response) {
+		FB.api('/' + value.cover_photo , function(response) {
 			if (!response.picture) {
 				$('#album_' + key).hide();
 			} else {
@@ -117,10 +117,11 @@ function showAlbums(response) {
 		});
 
 		//Show albums photos in gallery
-		$('.album_link_' + key).click(function(event) {
+		/*$('.album_link_' + key).click(function(event) {
 			event.preventDefault();
+			
 			show_albums_photos(value.id);
-		});
+		});*/
 
 		//Download album & zip creation
 		$('#download_album_' + key).click(function(event) {
@@ -189,7 +190,7 @@ function moveAlbum(albumId) {
 			location.href = "picasamove.php?albumid=" + albumId;
 		},
 		error : function(data) {
-			alert('Error Occure on server,Please Try again')
+			alert('Error Occure on server,Please Try again');
 		}
 	});
 }
@@ -250,40 +251,26 @@ var lastAlbumId;
 function show_albums_photos(album_id) {
 
 	lastAlbumId = album_id;
-	$('#loading_gallery').show();
-	$('.connect').hide();
-	$('.top-bar').hide();
-
-	$('#supersized-loader').show();
-	$('#supersized').show();
+	
 	if ($('#album_' + album_id).length > 0) {
 		$('#album_' + album_id).show();
 	} else {
 		FB.api('/' + album_id + '/photos', function(response) {
 			var arrPhotos = [];
-			// console.log(response.data);
+			$("#slides").html("<ul id='temp'  data-orbit data-orbit data-options='timer: true; animation:slide;pause_on_hover:false;timer_speed: 3000;animation_speed:1500;variable_height: false;'></ul>");
+			
 			$.each(response.data, function(key, value) {
-				arrPhotos.push({
-					image : value.source,
-					title : (value.name != undefined) ? value.name : '',
-					thumb : value.picture,
-					url : value.link
-				})
+				
+				
+				 $("#temp").append("<li data-orbit-slide='headline-2'><img class='orbit_img' src='"+value.source+"' alt='slide 1' /><div class='orbit-caption'>Subheadline</div></li>");
+				
 			});
-			$('#loading_gallery').hide();
-			jQuery(function($) {
-				$.supersized({
-					slide_interval : 8000, // Length between transitions
-					transition : 1, // 0-None, 1-Fade, 2-Slide Top, 3-Slide Right, 4-Slide Bottom, 5-Slide Left, 6-Carousel Right, 7-Carousel Left
-					transition_speed : 700, // Speed of transition
-					// Components
-					slide_links : 'blank', // Individual links for each slide (Options: false, 'num', 'name', 'blank')
-					slides : arrPhotos
-
-				});
-			});
+			
+     
+			$(document).foundation('orbit');
+  
 		});
-		$('#slider').show();
+		$("#slides").fullscreen();
 
 	}
 }
@@ -308,3 +295,13 @@ $("#btnDownload").click(function() {
 $("#btnMove").click(function() {
 	moveAlbum(lastAlbumId);
 });
+$(document).bind('fscreenchange', function(e, state, elem) {
+		// if we currently in fullscreen mode
+		if ($.fullscreen.isFullScreen()) {
+			$('#slides').show();
+		} else {
+			$('#slides').hide();
+			//$('#fullscreen .exitfullscreen').hide();
+		}
+		$('#state').text($.fullscreen.isFullScreen() ? '' : 'not');
+	});

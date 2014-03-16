@@ -2,7 +2,7 @@
  *  callback for fb connection stat change
  */
 
-function updateStatusCallback(response){
+function getLoginStatus(response){
   if (response.status === 'connected') {
   	// callback for album load compleat
   	FB.api('/me/albums', loadAlbums);

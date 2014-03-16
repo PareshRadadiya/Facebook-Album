@@ -16,14 +16,15 @@
     <script src="js/vendor/modernizr.js"></script>
      <script src="js/vendor/jquery.js"></script>
      <script src="js/foundation.min.js"></script>
+      <script src="js/fbalbum.js"></script>
       <script src="lib/slideshow/js/jquery.easing.min.js"></script>
       <script src="lib/slideshow/js/supersized.3.2.7.min.js"></script>
        <script src="lib/slideshow/theme/supersized.shutter.min.js"></script>
 <script src="lib/jquery.fullscreen-0.4.1.min.js"></script>
 
-    <script src="js/fbalbum.js"></script>
+   
     
-    <script>
+    <script type="text/javascript">
    
     $(document).ready(function() {
     	$("#slides").hide();
@@ -33,7 +34,7 @@
       appId: '<?php echo $AppId; ?>',
     });     
    
-    FB.getLoginStatus(updateStatusCallback);
+    FB.getLoginStatus(getLoginStatus);
   });
 });
 </script>

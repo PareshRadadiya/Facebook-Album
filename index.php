@@ -6,12 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Facebook Album</title>
     <link rel="stylesheet" type="text/css" href="css/normalize.css">
-        <link rel="stylesheet" type="text/css" href="css/foundation.min.css">
+        <link rel="stylesheet" type="text/css" href="css/foundation.css">
       <link type="text/css" rel="stylesheet" href="css/fbalbum.css">
     <script src="js/vendor/modernizr.js"></script>
      <script src="js/vendor/jquery.js"></script>
      <script src="js/foundation.min.js"></script>
-    
+    <script src="js/scripts.js"></script>
     <script>
   $(document).foundation();
 </script>
