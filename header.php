@@ -6,75 +6,77 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Facebook Album</title>
     <link rel="stylesheet" type="text/css" href="css/normalize.css">
-       
-      <link type="text/css" rel="stylesheet" href="css/foundation.css">
-
-          <link type="text/css" rel="stylesheet" href="lib/slideshow/css/supersized.css">
+                 <link type="text/css" rel="stylesheet" href="lib/slideshow/css/supersized.css">
             <link type="text/css" rel="stylesheet" href="lib/slideshow/theme/supersized.shutter.css">
+      <link type="text/css" rel="stylesheet" href="css/foundation.css">
+        <link type="text/css" rel="stylesheet" href="css/foundation-icons.css">
+
+
           
  <link type="text/css" rel="stylesheet" href="css/fbalbum.css">
     <script src="js/vendor/modernizr.js"></script>
      <script src="js/vendor/jquery.js"></script>
      <script src="js/foundation.min.js"></script>
-      <script src="js/fbalbum.js"></script>
+
       <script src="lib/slideshow/js/jquery.easing.min.js"></script>
       <script src="lib/slideshow/js/supersized.3.2.7.min.js"></script>
        <script src="lib/slideshow/theme/supersized.shutter.min.js"></script>
-<script src="lib/jquery.fullscreen-0.4.1.min.js"></script>
+
 
    
-    
+     <script src="js/fbalbum.js"></script>
+      <script>
+  $(document).foundation();
+</script>
     <script type="text/javascript">
    
-    $(document).ready(function() {
+    $(function() {
     	$("#slides").hide();
-  $.ajaxSetup({ cache: true });
+    	
+  $.ajaxSetup({ cache: true ,cookie:true,oauth:true});
   $.getScript('//connect.facebook.net/en_UK/all.js', function(){
     FB.init({
-      appId: '<?php echo $AppId; ?>',
+      appId: '<?php echo $appId; ?>',
     });     
    
     FB.getLoginStatus(getLoginStatus);
   });
 });
 </script>
+     
 </head>
 <body>
 	<div class="off-canvas-wrap">
-      <div class="inner-wrap">
-        <aside class="left-off-canvas-menu">
+  <div class="inner-wrap">
+    <nav class="tab-bar  show-for-small">
+      <section class="left-small">
+        <a class="left-off-canvas-toggle menu-icon" ><span></span></a>
+      </section>
 
+      <section class="middle tab-bar-section">
+        <h1 class="title">Facebook</h1>
+      </section>
 
-  <ul class="off-canvas-list">
-    <li><label class="first">Download</label></li>
-    <li><a href="http://foundation.zurb.com/learn/features.html">Download All</a></li>
+      
+    </nav>
+
+    <aside class="left-off-canvas-menu">
+      <ul class="off-canvas-list">
+        <li><label>Download</label></li>
+        <li><a href="http://foundation.zurb.com/learn/features.html">Download All</a></li>
     <li><a href="http://foundation.zurb.com/learn/faq.html">Download Selected</a></li>
-    
-  </ul>
-
-
-
-  <ul class="off-canvas-list">
-    <li><label>Move</label></li>
-    <li><a href="http://foundation.zurb.com/templates.html">Move All</a></li>
+      </ul>
+       <ul class="off-canvas-list">
+        <li><label>Move</label></li>
+       <li><a href="http://foundation.zurb.com/templates.html">Move All</a></li>
     <li><a href="http://foundation.zurb.com/docs">Move Selected</a></li>
-  </ul>
+      </ul>
+    </aside>
 
- 
- 
-
-  
-
-</aside>
-	
-<nav class="tab-bar show-for-small">
-  <a class="left-off-canvas-toggle menu-icon ">
-    <span>Facebook</span>
-  </a>  
-</nav>
+    
 
 
-<nav class="top-bar hide-for-small" data-topbar="">
+<nav class="top-bar hide-for-small" data-topbar>
   <ul class="title-area">
     <li class="name">
       <h1><a href="#">Facebook</a></h1>
