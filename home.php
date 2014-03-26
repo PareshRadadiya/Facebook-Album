@@ -1,8 +1,119 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facebook Album</title>
+    <link rel="stylesheet" type="text/css" href="css/normalize.css">
 
-<?php
-require_once ("php-sdk/Fbcredentials.php");
-require_once ("header.php");
-?>
+      <link type="text/css" rel="stylesheet" href="css/foundation.css">
+        <link type="text/css" rel="stylesheet" href="css/foundation-icons.css">
+  <link type="text/css" rel="stylesheet" href="lib/toastr/toastr.min.css">
+ <link type="text/css" rel="stylesheet" href="css/fbalbum.css">
+
+    <script src="js/vendor/modernizr.js"></script>
+     <script src="js/vendor/jquery.js"></script>
+     <script src="js/foundation.min.js"></script>
+
+  <script src="lib/toastr/toastr.min.js"></script>
+  <script src="lib/jquery.blockUI.min.js"></script>
+     <script src="js/fbalbum.js"></script>
+       <script src="lib/jquery.cookie.js"></script>
+    <script type="text/javascript">
+
+$(function(){
+	
+	
+	$(document).foundation();
+if($.cookie('page')){
+	location.reload();
+}
+ $.ajaxSetup({ async :false ,cache: true ,cookie:true,oauth:true});
+  $.getScript('//connect.facebook.net/en_UK/all.js', function(){
+    FB.init({
+      appId: '209721652515800',
+     
+    });   
+       FB.getLoginStatus(getLoginStatus); 
+  });
+});
+
+
+</script>
+     
+</head>
+<body style="background:  #efefef;">
+	<div class="off-canvas-wrap">
+  <div class="inner-wrap">
+    <nav class="tab-bar  show-for-small">
+      <section class="left-small">
+        <a class="left-off-canvas-toggle menu-icon" ><span></span></a>
+      </section>
+
+      <section class="middle tab-bar-section">
+        <h1 class="title">Facebook</h1>
+      </section>
+
+      
+    </nav>
+
+    <aside class="left-off-canvas-menu">
+      <ul class="off-canvas-list">
+        <li><label>Download</label></li>
+        <li><a href="http://foundation.zurb.com/learn/features.html">Download All</a></li>
+    <li><a href="http://foundation.zurb.com/learn/faq.html">Download Selected</a></li>
+      </ul>
+       <ul class="off-canvas-list">
+        <li><label>Move</label></li>
+       <li><a href="http://foundation.zurb.com/templates.html">Move All</a></li>
+    <li><a href="http://foundation.zurb.com/docs">Move Selected</a></li>
+      </ul>
+    </aside>
+
+    
+
+
+<nav class="top-bar hide-for-small" data-topbar>
+  <ul class="title-area">
+    <li class="name">
+      <h1><a href="#">Facebook</a></h1>
+    </li>
+  </ul>
+  
+<section class="top-bar-section">
+    <ul class="right">
+      <li class="divider"></li>
+      <li class="has-dropdown not-click">
+        <a href="#" class="">Download</a>
+        <ul class="dropdown">
+        	
+          <li><a href="javascript:downloadAll()">Download All</a></li>
+          <li><a href="javascript:downloadAlbums()">Download Selected</a></li>
+       
+        </ul>
+      </li>
+      <li class="divider"></li>
+      <li class="has-dropdown not-click">
+        <a href="#" class="">Move</a>
+        <ul class="dropdown">
+        	
+          <li><a href="javascript:moveAll();">Move All</a></li>
+          <li><a href="javascript:moveAlbums()">Move Selected</a></li>
+         
+        </ul>
+      </li>
+    
+      
+     
+      <li class="divider"></li>
+      <li class="has-form">
+        <a href="javascript:logout()" class="alert button expand">Log out</a>
+    </li></ul>
+  </section>
+  </nav>
+
+
 
 <section id="main-content">
 	
@@ -10,55 +121,24 @@ require_once ("header.php");
        <div id="albums" class="row centered-text">
   	</div>  
   	 
-  <div id="slides" style="display: none;">
-				<!-- 
-	<div id="prevthumb"></div>
-	<div id="nextthumb"></div>
-	
-	
-	<a id="prevslide" class="load-item"></a>
-	<a id="nextslide" class="load-item"></a>
-	
-	<div id="thumb-tray" class="load-item">
-		<div id="thumb-back"></div>
-		<div id="thumb-forward"></div>
-	</div> -->
-			
-	<!--Time Bar-->
-	<div id="progress-back" class="load-item">
-		<div id="progress-bar"></div>
-	</div>
-	
-	<!--Control Bar-->
-	<div id="controls-wrapper" class="load-item">
-		<div id="controls">
-			
-			<a id="play-button"><img id="pauseplay" src="img/pause.png"/></a>
-		
-			<!--Slide counter-->
-			<div id="slidecounter">
-				<span class="slidenumber"></span> / <span class="totalslides"></span>
-			</div>
-			
-			<!--Slide captions displayed here-->
-			<div id="slidecaption"></div>
-			
-			<!--Thumb Tray button-->
-			<a id="tray-button"><img id="tray-arrow" src="img/button-tray-up.png"/></a>
-			
-			<!--Navigation-->
-			<ul id="slide-list"></ul>
-			
-
-		</div>
-	</div>
-</div>
+ 
   </div>
   
- 
+ <div style="background-image: url('img/google-plus-social.jpg');background-size:contain;" id="loginModal" class="reveal-modal small" data-reveal>
+  <p style="color: #D3290E;" class="lead"><img src="img/GooglePlus_red-380x252.jpg" width="50" height="50"/> Sigin with google+</p>
+<input type="text" id="username" placeholder="User name" />
+<input type="password"id="password"  placeholder="Password" />
+<input type="button" value="Sigin" class="button alert small" onclick="picasaLogin();"/>
+  <a class="close-reveal-modal">&#215;</a>
+</div>
+ <div  style="background-image: url('img/google-plus-social.jpg');background-size:contain;" id="downloadModal" class="reveal-modal small" data-reveal>
+  <p style="color: #133783;" class="lead "><img src="img/facebook.png" width="50" height="50"/> Your album has been prepared</p>
+<a class="startdownload button fbstyle small fi-download">  Start Download</a>
+  <a class="close-reveal-modal">&#215;</a>
+</div>
+
  </section>
  
- 
-<?php
-require_once ("footer.php");
-?>
+</div></div>
+</body>
+  </html>

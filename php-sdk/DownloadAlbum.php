@@ -1,4 +1,5 @@
 <?php
+try {
 require_once("facebook.php");
 require_once("Fbcredentials.php");
 $photoList=array();
@@ -8,22 +9,17 @@ if($user){
   $zip = new ZipArchive;
  $zip -> open($filename, ZipArchive::CREATE | ZIPARCHIVE::OVERWRITE);
  foreach ($albums as $i => $albumId) {
- 	 //addToZip($albumId);
 	 ini_set('max_execution_time', 500);
-$photoList = $facebook -> api('/' . $albumId . '/photos', 'GET');
+ $photoList = $facebook -> api('/' . $albumId . '/photos', 'GET');
  foreach ($photoList["data"] as $photo) {
-	$zip->addFromString(basename($photo["source"]),file_get_contents($photo["source"]));
+ $zip->addFromString(basename($photo["source"]),file_get_contents($photo["source"]));
 }
-
- $zip->close();
-/*header('Content-disposition: attachment; filename='.$filename);
-header('Content-type: application/zip');
-readfile($filename);
-unlink($filename);*/
+}
+$zip->close();
 echo $filename;
 }
-
-
-
+} catch (Exception $e) {
+    echo "fail";
 }
+
 ?>

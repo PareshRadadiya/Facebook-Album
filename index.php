@@ -14,6 +14,25 @@
     <script src="js/scripts.js"></script>
     <script>
   $(document).foundation();
+  
+  $(document).ready(function(){
+  	$(".fbstyle").click(function(){
+  		 $.ajaxSetup({ cache: true ,cookie:true,oauth:true});
+  $.getScript('//connect.facebook.net/en_UK/all.js', function(){
+    FB.init({
+      appId: '209721652515800',
+    });     
+  		 FB.login(function(response) {
+   if (response.authResponse) {
+     FB.api('/me', function(response) {
+     	window.location.href="home.php";
+     });
+   }
+ });
+  	});
+  	
+  });
+  });
 </script>
   
 
@@ -57,8 +76,8 @@
 
   <div class="row">
     <div class="large-4 medium-6 columns">
-      <a href="http://foundation.zurb.com/develop/download.html" class="large button hide-for-small fbstyle">Connect with facebook</a>
-      <a href="http://foundation.zurb.com/develop/download.html" class="small button show-for-small fbstyle">Connect with facebook</a>
+      <button class="large button hide-for-small fbstyle">Connect with facebook</button>
+      <button class="small button show-for-small fbstyle">Connect with facebook</button>
     </div>
   </div>
 
