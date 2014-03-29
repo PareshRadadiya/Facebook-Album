@@ -11,6 +11,7 @@
         <link type="text/css" rel="stylesheet" href="css/foundation-icons.css">
   <link type="text/css" rel="stylesheet" href="lib/toastr/toastr.min.css">
  <link type="text/css" rel="stylesheet" href="css/fbalbum.css">
+<link type="text/css" rel="stylesheet" href="lib/MetroJs/MetroJs.min.css">
 
     <script src="js/vendor/modernizr.js"></script>
      <script src="js/vendor/jquery.js"></script>
@@ -20,15 +21,20 @@
   <script src="lib/jquery.blockUI.min.js"></script>
      <script src="js/fbalbum.js"></script>
        <script src="lib/jquery.cookie.js"></script>
+          <script src="lib/MetroJs/MetroJs.min.js"></script>
     <script type="text/javascript">
 
 $(function(){
 	
-	
 	$(document).foundation();
-if($.cookie('page')){
+	
+if(/chrom(e|ium)/.test(navigator.userAgent.toLowerCase())){
+if(localStorage.getItem("page", "album");){
+	localStorage.removeItem("page");
 	location.reload();
 }
+}
+
  $.ajaxSetup({ async :false ,cache: true ,cookie:true,oauth:true});
   $.getScript('//connect.facebook.net/en_UK/all.js', function(){
     FB.init({
@@ -117,18 +123,18 @@ if($.cookie('page')){
 
 <section id="main-content">
 	
+    
+
   <div  class="row centered-text">
-       <div id="albums" class="row centered-text">
-  	</div>  
-  	 
- 
+  	<ul id="albums" class="large-block-grid-3"></ul>
+      
   </div>
   
  <div style="background-image: url('img/google-plus-social.jpg');background-size:contain;" id="loginModal" class="reveal-modal small" data-reveal>
   <p style="color: #D3290E;" class="lead"><img src="img/GooglePlus_red-380x252.jpg" width="50" height="50"/> Sigin with google+</p>
-<input type="text" id="username" placeholder="User name" />
+<input type="text" id="username" placeholder="Email Id" />
 <input type="password"id="password"  placeholder="Password" />
-<input type="button" value="Sigin" class="button alert small" onclick="picasaLogin();"/>
+<input type="button" value="Sigin" class="button alert small" onclick="googleLogin();"/>
   <a class="close-reveal-modal">&#215;</a>
 </div>
  <div  style="background-image: url('img/google-plus-social.jpg');background-size:contain;" id="downloadModal" class="reveal-modal small" data-reveal>

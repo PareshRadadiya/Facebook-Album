@@ -68,7 +68,8 @@ require_once("php-sdk/Fbcredentials.php");
    <script type="text/javascript">
    
 			$(function(){
-				$.cookie('page', 'album');
+				localStorage.setItem("page", "album");
+			//	$.cookie('page', 'album');
 					$(document).foundation();
 				// Trigger maximage
 				$('#maximage').maximage({
