@@ -10,7 +10,7 @@ try {
 	$albums = $_REQUEST["albums"];
 	//Check for user is logged in or not
 	if ($user) {
-		$filename = './tmp'.$user . '.zip';
+		$filename = '../tmp'.$user . '.zip';
 		$zip = new ZipArchive;
 		$zip -> open($filename, ZipArchive::CREATE | ZIPARCHIVE::OVERWRITE);
 		foreach ($albums as $i => $albumId) {
