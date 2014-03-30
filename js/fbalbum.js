@@ -60,7 +60,7 @@ function downloadAlbum(albumId) {
 	}, function(response) {
 		$.unblockUI();
 		if (response != "fail" && response.split(".")[1] == "zip") {
-			$(".startdownload").attr("href", "php-sdk/" + response);
+			$(".startdownload").attr("href", "tmp/" + response);
 			$(".startdownload").click(function() {
 				$('#downloadModal').foundation('reveal', 'close');
 			});
@@ -86,7 +86,7 @@ function downloadAlbums() {
 	}, function(response) {
 		$.unblockUI();
 		if (response != "fail" && response.split(".")[1] == "zip") {
-			$(".startdownload").attr("href", "php-sdk/" + response);
+			$(".startdownload").attr("href", "tmp/" + response);
 			$(".startdownload").click(function() {
 				$('#downloadModal').foundation('reveal', 'close');
 			});
@@ -113,7 +113,7 @@ function downloadAll() {
 	}, function(response) {
 		$.unblockUI();
 		if (response != "fail" && response.split(".")[1] == "zip") {
-			$(".startdownload").attr("href", "php-sdk/" + response);
+			$(".startdownload").attr("href", "tmp/" + response);
 			$(".startdownload").click(function() {
 				$('#downloadModal').foundation('reveal', 'close');
 			});

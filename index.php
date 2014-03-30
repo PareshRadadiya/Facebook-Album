@@ -45,7 +45,7 @@
 <nav class="top-bar" data-topbar="">
   <ul class="title-area">
     <li class="name">
-      <h1><a href="#">FBAlbum</a></h1>
+      <h1><a href="#">Facebook</a></h1>
     </li>
   </ul>
 
@@ -55,7 +55,7 @@
 
   <div class="row">
     <div class="medium-7 large-6 columns">
-      <h1>FB Album</h1><br>
+      <h1>Facebook Album</h1><br>
       <h3>Download your Facebook albums <br class="hide-for-small">and move it to picasa.</h3>
       <br>
     </div>
