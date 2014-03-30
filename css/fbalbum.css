@@ -932,20 +932,8 @@ background-color: #133783;
 height: 206px;
 width: 206px;
 }
-.tileSelected {
-    height:100px;
-    width:100px;
-    background:black;
-    color:#fff;
-    position: relative;
-}
 
-.tileSelected::before {
-    content: "";
-    width: 28px;
-    height: 28px;
-    top: 0;
-    right: 0;
-    position: absolute;
-    background: url(tick.png);
+.cover-orbit img{
+	height: 350px;
+	width: 100%;
 }

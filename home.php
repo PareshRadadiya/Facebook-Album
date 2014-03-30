@@ -20,22 +20,23 @@
   <script src="lib/toastr/toastr.min.js"></script>
   <script src="lib/jquery.blockUI.min.js"></script>
      <script src="js/fbalbum.js"></script>
-       <script src="lib/jquery.cookie.js"></script>
           <script src="lib/MetroJs/MetroJs.min.js"></script>
     <script type="text/javascript">
 
 $(function(){
-	
-	$(document).foundation();
-	
+$(document).foundation(); 	
+/**
+* Relaod page in chrome to referesh catch
+*/
 if(/chrom(e|ium)/.test(navigator.userAgent.toLowerCase())){
-if(localStorage.getItem("page", "album");){
+if(localStorage.getItem("page")){
+	console.log(localStorage.getItem("page"));
 	localStorage.removeItem("page");
 	location.reload();
 }
 }
 
- $.ajaxSetup({ async :false ,cache: true ,cookie:true,oauth:true});
+ $.ajaxSetup({cache: true ,cookie:true,oauth:true});
   $.getScript('//connect.facebook.net/en_UK/all.js', function(){
     FB.init({
       appId: '209721652515800',
@@ -108,42 +109,41 @@ if(localStorage.getItem("page", "album");){
           <li><a href="javascript:moveAlbums()">Move Selected</a></li>
          
         </ul>
-      </li>
-    
-      
-     
+      </li>  
       <li class="divider"></li>
       <li class="has-form">
         <a href="javascript:logout()" class="alert button expand">Log out</a>
     </li></ul>
   </section>
   </nav>
-
-
+  
+<section>
+<ul class="cover-orbit" data-orbit  data-options="animation:slide; pause_on_hover:false; animation_speed:500;navigation_arrows:true;bullets:false;">
+</ul>
+</section>
 
 <section id="main-content">
-	
-    
-
+		
   <div  class="row centered-text">
-  	<ul id="albums" class="large-block-grid-3"></ul>
-      
+  	<!-- <ul class="cover-orbit" data-orbit data-options="animation:slide; pause_on_hover:false; timer_speed: 1000;animation_speed:500; navigation_arrows:true; bullets:true;"></ul> -->
+  	<ul id="albums" class="large-block-grid-3"></ul>  
   </div>
   
- <div style="background-image: url('img/google-plus-social.jpg');background-size:contain;" id="loginModal" class="reveal-modal small" data-reveal>
-  <p style="color: #D3290E;" class="lead"><img src="img/GooglePlus_red-380x252.jpg" width="50" height="50"/> Sigin with google+</p>
+<div style="background-image: url('img/google-plus-social.jpg');background-size:contain;" id="loginModal" class="reveal-modal small" data-reveal>
+<p style="color: #D3290E;" class="lead"><img src="img/GooglePlus_red-380x252.jpg" width="50" height="50"/> Sigin with google+</p>
 <input type="text" id="username" placeholder="Email Id" />
 <input type="password"id="password"  placeholder="Password" />
 <input type="button" value="Sigin" class="button alert small" onclick="googleLogin();"/>
-  <a class="close-reveal-modal">&#215;</a>
-</div>
- <div  style="background-image: url('img/google-plus-social.jpg');background-size:contain;" id="downloadModal" class="reveal-modal small" data-reveal>
-  <p style="color: #133783;" class="lead "><img src="img/facebook.png" width="50" height="50"/> Your album has been prepared</p>
-<a class="startdownload button fbstyle small fi-download">  Start Download</a>
-  <a class="close-reveal-modal">&#215;</a>
+<a class="close-reveal-modal">&#215;</a>
 </div>
 
- </section>
+<div  style="background-image: url('img/google-plus-social.jpg');background-size:contain;" id="downloadModal" class="reveal-modal small" data-reveal>
+<p style="color: #133783;" class="lead "><img src="img/facebook.png" width="50" height="50"/> Your album is ready to download</p>
+<a class="startdownload button fbstyle small fi-download">  Start Download</a>
+<a class="close-reveal-modal">&#215;</a>
+</div>
+
+</section>
  
 </div></div>
 </body>

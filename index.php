@@ -41,15 +41,7 @@
    
     <div class="off-canvas-wrap">
       <div class="inner-wrap">
-       
-
          <title>Facebook Album</title>
-         
- 
-
-
-
-
 <nav class="top-bar" data-topbar="">
   <ul class="title-area">
     <li class="name">
@@ -58,10 +50,6 @@
   </ul>
 
 </nav>
-
-        
-
-
 
 <section id="homepage-hero">
 
@@ -72,7 +60,6 @@
       <br>
     </div>
   </div>
-
 
   <div class="row">
     <div class="large-4 medium-6 columns">

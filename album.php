@@ -64,14 +64,11 @@ require_once("php-sdk/Fbcredentials.php");
      
   <script src="lib/maximage/js/jquery.cycle.all.min.js"></script>
   <script src="lib/maximage/js/jquery.maximage.min.js"></script>
-      <script src="lib/jquery.cookie.js"></script>
    <script type="text/javascript">
    
 			$(function(){
 				localStorage.setItem("page", "album");
-			//	$.cookie('page', 'album');
 					$(document).foundation();
-				// Trigger maximage
 				$('#maximage').maximage({
 					cycleOptions: {
 						fx: 'fade',
@@ -124,6 +121,8 @@ require_once("php-sdk/Fbcredentials.php");
 				 	<?php
 }
 		}
+	}else{
+		header("Location: index.php");
 	}
 	
 	?>
@@ -135,15 +134,15 @@ require_once("php-sdk/Fbcredentials.php");
 
   </html>
 
-		 <div style="background-image: url('img/google-plus-social.jpg');background-size:contain; z-index: 9999" id="loginModal" class="reveal-modal small" data-reveal>
+		 <div style="background-image: url('img/google-plus-social.jpg');background-size:contain; z-index: 9999" id="loginModal" class="reveal-modal  small" data-reveal>
   <p style="color: #D3290E;" class="lead"><img src="img/GooglePlus_red-380x252.jpg" width="50" height="50"/> Sigin with google+</p>
 <input type="text" id="username" placeholder="User name" />
 <input type="password"id="password"  placeholder="Password" />
-<input type="button" value="Sigin" class="button alert small" onclick="picasaLogin();"/>
+<input type="button" value="Sigin" class="button alert small" onclick="googleLogin();"/>
   <a class="close-reveal-modal">&#215;</a>
 </div>
  <div  style="background-image: url('img/google-plus-social.jpg');background-size:contain; z-index: 9999" id="downloadModal" class="reveal-modal small" data-reveal>
-  <p style="color: #133783;" class="lead "><img src="img/facebook.png" width="50" height="50"/> Your album has been prepared</p>
+  <p style="color: #133783;" class="lead "><img src="img/facebook.png" width="50" height="50"/> Your album is ready to download</p>
 <a class="startdownload button fbstyle small fi-download">  Start Download</a>
   <a class="close-reveal-modal">&#215;</a>
 </div>
