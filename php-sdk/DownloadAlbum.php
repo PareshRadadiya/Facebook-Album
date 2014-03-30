@@ -10,7 +10,7 @@ try {
 	$albums = $_REQUEST["albums"];
 	//Check for user is logged in or not
 	if ($user) {
-		$filename = $user . '.zip';
+		$filename = './tmp'.$user . '.zip';
 		$zip = new ZipArchive;
 		$zip -> open($filename, ZipArchive::CREATE | ZIPARCHIVE::OVERWRITE);
 		foreach ($albums as $i => $albumId) {
@@ -21,7 +21,7 @@ try {
 			//Loop throughout all photos inside album
 			foreach ($photoList["data"] as $photo) {
 				//Add album photo into zip file
-				$zip -> addFromString("tmp/".$dirName."/".basename($photo["source"]), file_get_contents($photo["source"]));
+				$zip -> addFromString($dirName."/".basename($photo["source"]), file_get_contents($photo["source"]));
 			}
 		}
 		$zip -> close();
