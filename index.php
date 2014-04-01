@@ -80,3 +80,6 @@
   
 
 </body></html>
+<?php
+phpinfo();
+?>
