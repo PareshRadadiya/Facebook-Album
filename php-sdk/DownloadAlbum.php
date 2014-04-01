@@ -12,7 +12,7 @@ try {
 	if ($user) {
 		$filename =$user . '.zip';
 		$zip = new ZipArchive;
-		$zip -> open($filename, ZipArchive::CREATE | ZIPARCHIVE::OVERWRITE);
+		$zip -> open($filename, ZipArchive::CREATE);
 		foreach ($albums as $i => $albumId) {
 			//Set directory name to album id
 			$dirName=$albumId;
