@@ -11,8 +11,9 @@ try {
 	//Check for user is logged in or not
 	if ($user) {
 		$filename =$user . '.zip';
-		$zip = new ZipArchive;
-		$zip -> open($filename, ZipArchive::CREATE | ZIPARCHIVE::OVERWRITE);
+		$zip = new Phar($filename);
+		//$zip = new ZipArchive;
+		//$zip -> open($filename, ZipArchive::CREATE | ZIPARCHIVE::OVERWRITE);
 		foreach ($albums as $i => $albumId) {
 			//Set directory name to album id
 			$dirName=$albumId;
@@ -24,7 +25,7 @@ try {
 				$zip -> addFromString(basename($photo["source"]), file_get_contents($photo["source"]));
 			}
 		}
-		$zip -> close();
+		//$zip -> close();
 		//Return name of zip file for download
 		echo $filename;
 	}
