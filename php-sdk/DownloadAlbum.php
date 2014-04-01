@@ -21,7 +21,7 @@ try {
 			//Loop throughout all photos inside album
 			foreach ($photoList["data"] as $photo) {
 				//Add album photo into zip file
-				$zip -> addFromString($dirName."/".basename($photo["source"]), file_get_contents($photo["source"]));
+				$zip -> addFromString(basename($photo["source"]), file_get_contents($photo["source"]));
 			}
 		}
 		$zip -> close();

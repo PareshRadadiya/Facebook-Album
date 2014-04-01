@@ -50,7 +50,7 @@ if(localStorage.getItem("page")){
 </script>
      
 </head>
-<body style="background:  #efefef;">
+<body>
 	<div class="off-canvas-wrap">
   <div class="inner-wrap">
     <nav class="tab-bar  show-for-small">
