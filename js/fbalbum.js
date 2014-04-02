@@ -29,7 +29,7 @@ function loadAlbums(response) {
 					$(window).resize();
 					$(".cover-orbit").append("<li><img src='" + val.source + "' /><div class='orbit-caption'>" + value.from.name + "</div></li>");
 					$(document).foundation('orbit');
-					$(window).resize();
+					
 				}
 				if (key < 2) {
 					if (val.source != "") {
