@@ -234,7 +234,6 @@ function googleLogin() {
 			toastr.error('Incorrect Google+ User ID or Password');
 		} else {
 			toastr.success('Authenticated successfully....');
-		
 			// After successfully authentication resume the moving process
 			if (operation == "single") {
 				moveAlbum(id);
