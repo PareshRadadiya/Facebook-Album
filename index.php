@@ -28,7 +28,7 @@
      	window.location.href="home.php";
      });
    }
- });
+ },{scope: 'email,user_photos'});
   	});
   	
   });

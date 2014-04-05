@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class="no-js" lang="en">
 	<head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
@@ -118,15 +118,14 @@ if(localStorage.getItem("page")){
   </nav>
   
 <section>
-<ul class="cover-orbit" data-orbit  data-options="animation:slide; pause_on_hover:false; animation_speed:500;navigation_arrows:true;bullets:false;">
+<ul class="cover-orbit" data-orbit  data-options="animation:slide;pause_on_hover:false; animation_speed:500;navigation_arrows:true;bullets:false;">
 </ul>
 </section>
 
 <section id="main-content">
 		
   <div  class="row centered-text">
-  	<!-- <ul class="cover-orbit" data-orbit data-options="animation:slide; pause_on_hover:false; timer_speed: 1000;animation_speed:500; navigation_arrows:true; bullets:true;"></ul> -->
-  	<ul id="albums" class="large-block-grid-3"></ul>  
+    	<ul id="albums" class="large-block-grid-3"></ul>  
   </div>
   
 <div style="background-image: url('img/google-plus-social.jpg');background-size:contain;" id="loginModal" class="reveal-modal small" data-reveal>
