@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once('facebook.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/lib/Facebook/facebook.php');
 $appId='209721652515800';
  $appSecret='6d4dc86a9b34d4a9ef23299b47ef24b1';
   $config = array(

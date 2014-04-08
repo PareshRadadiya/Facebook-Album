@@ -3,9 +3,10 @@
  * Move one or more albums to google+ account base on specified albumId list
  */
 try {
-	require_once ("facebook.php");
+	require_once ("../lib/Facebook/facebook.php");
 	require_once ("Fbcredentials.php");
-	require_once 'Zend/Loader.php';
+	set_include_path(get_include_path() . PATH_SEPARATOR . '../lib');
+	require_once ("Zend/Loader.php");
 	/*
 	 * Load zend gdata lib for google+ authentication and moving process
 	 */

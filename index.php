@@ -5,13 +5,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Facebook Album</title>
-    <link rel="stylesheet" type="text/css" href="css/normalize.css">
-        <link rel="stylesheet" type="text/css" href="css/foundation.css">
-      <link type="text/css" rel="stylesheet" href="css/fbalbum.css">
-    <script src="js/vendor/modernizr.js"></script>
-     <script src="js/vendor/jquery.js"></script>
-     <script src="js/foundation.min.js"></script>
-    <script src="js/scripts.js"></script>
+    <link rel="stylesheet" type="text/css" href="asset/css/normalize.css">
+        <link rel="stylesheet" type="text/css" href="asset/css/foundation.css">
+      <link type="text/css" rel="stylesheet" href="asset/css/fbalbum.css">
+    <script src="asset/js/vendor/modernizr.js"></script>
+     <script src="asset/js/vendor/jquery.js"></script>
+     <script src="asset/js/foundation.min.js"></script>
     <script>
   $(document).foundation();
   
@@ -70,7 +69,7 @@
 
   
   <div class="floatingyeti">
-    <img src="img/Facebook_like_thumb.png">
+    <img src="asset/img/Facebook_like_thumb.png">
   </div>
 </section>
         <a class="exit-off-canvas"></a>

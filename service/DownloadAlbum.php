@@ -3,7 +3,7 @@
  *  Download one or more albums base on specified albumId list
  */
 try {
-	require_once ("facebook.php");
+	require_once ("../lib/Facebook/facebook.php");
 	require_once ("Fbcredentials.php");
 	$photoList = array();
 	// Array of albumId that user requested for download

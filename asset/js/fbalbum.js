@@ -4,7 +4,7 @@
 var id, operation;
 function getLoginStatus(response) {
 	if (response.status === 'connected') {
-		$.post("php-sdk/SetToken.php", {
+		$.post("service/SetToken.php", {
 			"provider" : 'facebook',
 			"accessToken" : response.authResponse.accessToken
 		});
@@ -52,15 +52,15 @@ function loadAlbums(response) {
  */
 function downloadAlbum(albumId) {
 	$.blockUI({
-		message : '<h4><img width="50px" height="50px;" src="img/1389435415272.gif" />Your album is being prepared...</h4>'
+		message : '<h4><img width="50px" height="50px;" src="asset/img/1389435415272.gif" />Your album is being prepared...</h4>'
 	});
 	var albums = [albumId];
-	$.post("php-sdk/DownloadAlbum.php", {
+	$.post("service/DownloadAlbum.php", {
 		"albums" : albums
 	}, function(response) {
 		$.unblockUI();
 		if (response != "fail" && response.split(".")[1] == "zip") {
-			$(".startdownload").attr("href", "php-sdk/" + response);
+			$(".startdownload").attr("href", "service/" + response);
 			$(".startdownload").click(function() {
 				$('#downloadModal').foundation('reveal', 'close');
 			});
@@ -76,17 +76,17 @@ function downloadAlbum(albumId) {
  */
 function downloadAlbums() {
 	$.blockUI({
-		message : '<h4><img width="50px" height="50px;" src="img/1389435415272.gif" />Your albums is being prepared...</h4>'
+		message : '<h4><img width="50px" height="50px;" src="asset/img/1389435415272.gif" />Your albums is being prepared...</h4>'
 	});
 	var albums = $("input:checkbox:checked").map(function() {
 		return $(this).val();
 	}).get();
-	$.post("php-sdk/DownloadAlbum.php", {
+	$.post("service/DownloadAlbum.php", {
 		"albums" : albums
 	}, function(response) {
 		$.unblockUI();
 		if (response != "fail" && response.split(".")[1] == "zip") {
-			$(".startdownload").attr("href", "php-sdk/" + response);
+			$(".startdownload").attr("href", "service/" + response);
 			$(".startdownload").click(function() {
 				$('#downloadModal').foundation('reveal', 'close');
 			});
@@ -103,17 +103,17 @@ function downloadAlbums() {
  */
 function downloadAll() {
 	$.blockUI({
-		message : '<h4><img width="50px" height="50px;" src="img/1389435415272.gif" />Your albums is being prepared...</h4>'
+		message : '<h4><img width="50px" height="50px;" src="asset/img/1389435415272.gif" />Your albums is being prepared...</h4>'
 	});
 	var albums = $("input:checkbox").map(function() {
 		return $(this).val();
 	}).get();
-	$.post("php-sdk/DownloadAlbum.php", {
+	$.post("service/DownloadAlbum.php", {
 		"albums" : albums
 	}, function(response) {
 		$.unblockUI();
 		if (response != "fail" && response.split(".")[1] == "zip") {
-			$(".startdownload").attr("href", "php-sdk/" + response);
+			$(".startdownload").attr("href", "service/" + response);
 			$(".startdownload").click(function() {
 				$('#downloadModal').foundation('reveal', 'close');
 			});
@@ -132,12 +132,12 @@ function downloadAll() {
 function moveAlbum(albumId) {
 	$.blockUI({
 		baseZ : 99999,
-		message : '<h4><img width="50px" height="50px;" src="img/1389435415272.gif" />Your album is being moved to google+...</h4>'
+		message : '<h4><img width="50px" height="50px;" src="asset/img/1389435415272.gif" />Your album is being moved to google+...</h4>'
 	});
-	$.get("php-sdk/getToken.php", function(response) {
+	$.get("service/getToken.php", function(response) {
 		if (response == "1") {
 			var albums = [albumId];
-			$.post("php-sdk/MoveAlbum.php", {
+			$.post("service/MoveAlbum.php", {
 				"albums" : albums
 			}, function(response) {
 				$.unblockUI();
@@ -161,14 +161,14 @@ function moveAlbum(albumId) {
  */
 function moveAlbums() {
 	$.blockUI({
-		message : '<h4><img width="50px" height="50px;" src="img/1389435415272.gif" />Your albums is being moved to google+...</h4>'
+		message : '<h4><img width="50px" height="50px;" src="asset/img/1389435415272.gif" />Your albums is being moved to google+...</h4>'
 	});
-	$.get("php-sdk/getToken.php", function(response) {
+	$.get("service/getToken.php", function(response) {
 		if (response == "1") {
 			var albums = $("input:checkbox:checked").map(function() {
 				return $(this).val();
 			}).get();
-			$.post("php-sdk/MoveAlbum.php", {
+			$.post("service/MoveAlbum.php", {
 				"albums" : albums
 			}, function(response) {
 				$.unblockUI();
@@ -191,14 +191,14 @@ function moveAlbums() {
  */
 function moveAll() {
 	$.blockUI({
-		message : '<h4><img width="50px" height="50px;" src="img/1389435415272.gif" />Your albums is being moved to google+...</h4>'
+		message : '<h4><img width="50px" height="50px;" src="asset/img/1389435415272.gif" />Your albums is being moved to google+...</h4>'
 	});
-	$.get("php-sdk/getToken.php", function(response) {
+	$.get("service/getToken.php", function(response) {
 		if (response == "1") {
 			var albums = $("input:checkbox").map(function() {
 				return $(this).val();
 			}).get();
-			$.post("php-sdk/MoveAlbum.php", {
+			$.post("service/MoveAlbum.php", {
 				"albums" : albums
 			}, function(response) {
 				$.unblockUI();
@@ -220,14 +220,14 @@ function moveAll() {
  * Used to login into google+
  */
 function googleLogin() {
-	$.blockUI({message : '<h4><img width="50px" height="50px;" src="img/1389435415272.gif" />Authenticating.......</h4>'});
+	$.blockUI({message : '<h4><img width="50px" height="50px;" src="asset/img/1389435415272.gif" />Authenticating.......</h4>'});
 	$('#loginModal').foundation('reveal', 'close');
 	var sendData = {
 		"provider" : 'picasa',
 		"username" : $("#username").val(),
 		"password" : $("#password").val()
 	};
-	$.post("php-sdk/SetToken.php", sendData, function(response) {
+	$.post("service/SetToken.php", sendData, function(response) {
 		$.unblockUI();
 		if (response != "success") {
 			$('#loginModal').foundation('reveal', 'open');

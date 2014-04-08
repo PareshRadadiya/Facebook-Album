@@ -1,6 +1,6 @@
 <?php
-require_once("php-sdk/facebook.php");
-require_once("php-sdk/Fbcredentials.php");
+require_once("lib/Facebook/facebook.php");
+require_once("service/Fbcredentials.php");
 ?>
 <!DOCTYPE html>
 <html>
@@ -48,18 +48,18 @@ require_once("php-sdk/Fbcredentials.php");
 			}
 		</style>
     
-       <link type="text/css" rel="stylesheet" href="css/foundation.css">
-        <link type="text/css" rel="stylesheet" href="css/foundation-icons.css">
+       <link type="text/css" rel="stylesheet" href="asset/css/foundation.css">
+        <link type="text/css" rel="stylesheet" href="asset/css/foundation-icons.css">
   <link type="text/css" rel="stylesheet" href="lib/toastr/toastr.min.css">
- <link type="text/css" rel="stylesheet" href="css/fbalbum.css">
+ <link type="text/css" rel="stylesheet" href="asset/css/fbalbum.css">
 
-    <script src="js/vendor/modernizr.js"></script>
-     <script src="js/vendor/jquery.js"></script>
-     <script src="js/foundation.min.js"></script>
+    <script src="asset/js/vendor/modernizr.js"></script>
+     <script src="asset/js/vendor/jquery.js"></script>
+     <script src="asset/js/foundation.min.js"></script>
 
   <script src="lib/toastr/toastr.min.js"></script>
-  <script src="lib/jquery.blockUI.min.js"></script>
-     <script src="js/fbalbum.js"></script>
+  <script src="lib/blockUI/jquery.blockUI.min.js"></script>
+     <script src="asset/js/fbalbum.js"></script>
        <script src="lib/maximage/js/jquery.easing.min.js"></script>
      
   <script src="lib/maximage/js/jquery.cycle.all.min.js"></script>
@@ -111,8 +111,8 @@ require_once("php-sdk/Fbcredentials.php");
 	<h1 style="color: white;"><?php echo $albumDetail["name"]; ?></h1>
 		</a>
 
-	<a href="" id="arrow_left"><img src="img/arrow_left.png" alt="Slide Left" /></a>
-		<a href="" id="arrow_right"><img src="img/arrow_right.png" alt="Slide Right" /></a>
+	<a href="" id="arrow_left"><img src="asset/img/arrow_left.png" alt="Slide Left" /></a>
+		<a href="" id="arrow_right"><img src="asset/img/arrow_right.png" alt="Slide Right" /></a>
 <div id="maximage">
 	<?php
  foreach ($photoList["data"] as $photo) {
@@ -134,15 +134,15 @@ require_once("php-sdk/Fbcredentials.php");
 
   </html>
 
-		 <div style="background-image: url('img/google-plus-social.jpg');background-size:contain; z-index: 9999" id="loginModal" class="reveal-modal  small" data-reveal>
-  <p style="color: #D3290E;" class="lead"><img src="img/GooglePlus_red-380x252.jpg" width="50" height="50"/> Sigin with google+</p>
+		 <div style="background-image: url('asset/img/google-plus-social.jpg');background-size:contain; z-index: 9999" id="loginModal" class="reveal-modal  small" data-reveal>
+  <p style="color: #D3290E;" class="lead"><img src="asset/img/GooglePlus_red-380x252.jpg" width="50" height="50"/> Sigin with google+</p>
 <input type="text" id="username" placeholder="User name" />
 <input type="password"id="password"  placeholder="Password" />
 <input type="button" value="Sigin" class="button alert small" onclick="googleLogin();"/>
   <a class="close-reveal-modal">&#215;</a>
 </div>
- <div  style="background-image: url('img/google-plus-social.jpg');background-size:contain; z-index: 9999" id="downloadModal" class="reveal-modal small" data-reveal>
-  <p style="color: #133783;" class="lead "><img src="img/facebook.png" width="50" height="50"/> Your album is ready to download</p>
+ <div  style="background-image: url('asset/img/google-plus-social.jpg');background-size:contain; z-index: 9999" id="downloadModal" class="reveal-modal small" data-reveal>
+  <p style="color: #133783;" class="lead "><img src="asset/img/facebook.png" width="50" height="50"/> Your album is ready to download</p>
 <a class="startdownload button fbstyle small fi-download">  Start Download</a>
   <a class="close-reveal-modal">&#215;</a>
 </div>
