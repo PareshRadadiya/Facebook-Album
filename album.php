@@ -67,7 +67,10 @@ require_once("service/Fbcredentials.php");
    <script type="text/javascript">
    
 			$(function(){
-				localStorage.setItem("page", "album");
+					if(/chrom(e|ium)/.test(navigator.userAgent.toLowerCase())){
+						localStorage.setItem("page", "album");
+				}
+			
 					$(document).foundation();
 				$('#maximage').maximage({
 					cycleOptions: {
