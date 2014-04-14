@@ -1,13 +1,8 @@
 /**
  * Callback of fb login status change
  */
-var id, operation;
 function getLoginStatus(response) {
 	if (response.status === 'connected') {
-		$.post("service/SetToken.php", {
-			"provider" : 'facebook',
-			"accessToken" : response.authResponse.accessToken
-		});
 		// Callback for album load compleat
 		FB.api('/me/albums', loadAlbums);
 	} else {
@@ -20,227 +15,97 @@ function getLoginStatus(response) {
  * load album photo into live tiles
  */
 function loadAlbums(response) {
-	var arr = ["<div class='two-wide blue live-tile' data-delay='4000'>", "<div class='two-wide blue live-tile' data-mode='flip' data-delay='4000'>", "<div class='two-wide blue live-tile' data-mode='carousel' data-direction='horizontal' data-delay='4000'>"];
+	var arr = ["<div class='blue live-tile' data-delay='4000'>", "<div class='blue live-tile' data-mode='flip' data-delay='4000'>", "<div class='blue live-tile' data-mode='carousel' data-direction='horizontal' data-delay='4000'>"];
 	$.each(response.data, function(index, value) {
 		var liveTile = "";
+		if(value.count!=undefined){
 		FB.api('/' + value.id + "/photos", function(response) {
 			$.each((response.data).slice(0, 2), function(key, val) {
 				if (value.name == "Cover Photos") {
 					$(window).resize();
 					$(".cover-orbit").append("<li><img src='" + val.source + "' /><div class='orbit-caption'>" + value.from.name + "</div></li>");
-					$(document).foundation('orbit');
-					
+					$(document).foundation('orbit');	
 				}
 				if (key < 2) {
-					if (val.source != "") {
-						liveTile += "<div><img  class='full' src='" + val.source + "' alt='3'> <span class='tile-title red'>" + value.name + "</div>";
+					if (val.picture != "") {
+						liveTile += "<div><img  class='full' src='" + val.picture + "' alt='3'> <span class='tile-title red'>" + value.name + "</div>";
 					} else {
 						liveTile += "<div><img  class='full' src='lib/MetroJs/metroIcons.jpg' alt='3'> <span class='tile-title red'>" + value.name + "</span></div>";
 					}
 				}
 			});
 			var no = Math.floor((Math.random() * 3) + 1) - 1;
-			$('#albums').append("<li><a href='album.php?id=" + value.id + "'>" + arr[no] + liveTile + "</div></a><ul class='button-group'><li style='float:none;'><a href='javascript:downloadAlbum(" + value.id + ")' class='fbstyle tiny button fi-download' ></a><a href='javascript:moveAlbum(" + value.id + ")' class='fbstyle tiny button fi-social-picasa' ></a> <input style='width:20px;height:20px;' value='" + value.id + "' type='checkbox'></li></ul></li>");
+		var type='single';
+			$('#albums').append("<li><a class='th' href='album.php?id=" + value.id + "'>" + arr[no] + liveTile + "</div></a><ul style='margin-left: 50px;' class='button-group'><li><a href='javascript:downloadAlbum(\"single\"," + value.id + ")' class='fbstyle tiny button fi-download' ></a><a href='javascript:moveAlbum(\"single\"," + value.id + ")' class='fbstyle tiny button fi-social-picasa' ></a> <input style='width:20px;height:20px;' value='" + value.id + "' type='checkbox'></li></ul></li>");
 			$(".live-tile, .flip-list").not(".exclude").liveTile();
+			
 		});
+		}
 	});
 }
 
 /**
- * Used to download one album
+ * Used to download album zip
+ * @param {downloadType} downloadType used to specify download type like single or multiple or all
  * @param {Object} albumId is id of album being downloaded
  */
-function downloadAlbum(albumId) {
-	$.blockUI({
-		message : '<h4><img width="50px" height="50px;" src="asset/img/1389435415272.gif" />Your album is being prepared...</h4>'
-	});
-	var albums = [albumId];
-	$.post("service/DownloadAlbum.php", {
-		"albums" : albums
-	}, function(response) {
-		$.unblockUI();
-		if (response != "fail" && response.split(".")[1] == "zip") {
-			$(".startdownload").attr("href", "service/" + response);
-			$(".startdownload").click(function() {
-				$('#downloadModal').foundation('reveal', 'close');
-			});
-			$('#downloadModal').foundation('reveal', 'open');
-		} else {
-			toastr.error("Opps, something wasn't right, Try again");
-		}
-	});
-}
-
-/**
- * Used to download selected albums
- */
-function downloadAlbums() {
-	$.blockUI({
-		message : '<h4><img width="50px" height="50px;" src="asset/img/1389435415272.gif" />Your albums is being prepared...</h4>'
-	});
-	var albums = $("input:checkbox:checked").map(function() {
-		return $(this).val();
-	}).get();
-	$.post("service/DownloadAlbum.php", {
-		"albums" : albums
-	}, function(response) {
-		$.unblockUI();
-		if (response != "fail" && response.split(".")[1] == "zip") {
-			$(".startdownload").attr("href", "service/" + response);
-			$(".startdownload").click(function() {
-				$('#downloadModal').foundation('reveal', 'close');
-			});
-			$('#downloadModal').foundation('reveal', 'open');
-		} else {
-			toastr.error("Opps, something wasn't right, Try again");
-		}
-
-	});
-}
-
-/**
- * Used to download all albums
- */
-function downloadAll() {
-	$.blockUI({
-		message : '<h4><img width="50px" height="50px;" src="asset/img/1389435415272.gif" />Your albums is being prepared...</h4>'
-	});
-	var albums = $("input:checkbox").map(function() {
-		return $(this).val();
-	}).get();
-	$.post("service/DownloadAlbum.php", {
-		"albums" : albums
-	}, function(response) {
-		$.unblockUI();
-		if (response != "fail" && response.split(".")[1] == "zip") {
-			$(".startdownload").attr("href", "service/" + response);
-			$(".startdownload").click(function() {
-				$('#downloadModal').foundation('reveal', 'close');
-			});
-			$('#downloadModal').foundation('reveal', 'open');
-		} else {
-			toastr.error("Opps, something wasn't right, Try again");
-		}
-
-	});
-}
-
-/**
- * Used to move single album to google+
- * @param {Object} albumId is the id of album being moved
- */
-function moveAlbum(albumId) {
-	$.blockUI({
-		baseZ : 99999,
-		message : '<h4><img width="50px" height="50px;" src="asset/img/1389435415272.gif" />Your album is being moved to google+...</h4>'
-	});
-	$.get("service/getToken.php", function(response) {
-		if (response == "1") {
-			var albums = [albumId];
-			$.post("service/MoveAlbum.php", {
-				"albums" : albums
-			}, function(response) {
-				$.unblockUI();
-				if (response == "fail") {
-					toastr.error("Opps, something wasn't right, Try again");
-				} else {
-					toastr.success('Album is moved sucessfully.');
-				}
-			});
-		} else {
-			id = albumId;
-			operation = "single";
-			$.unblockUI();
-			$('#loginModal').foundation('reveal', 'open');
-		}
-	});
-}
-
-/**
- * Used to move selected albums to google+
- */
-function moveAlbums() {
-	$.blockUI({
-		message : '<h4><img width="50px" height="50px;" src="asset/img/1389435415272.gif" />Your albums is being moved to google+...</h4>'
-	});
-	$.get("service/getToken.php", function(response) {
-		if (response == "1") {
-			var albums = $("input:checkbox:checked").map(function() {
+function downloadAlbum(downloadType,albumId) {
+	$.blockUI({message : '<h4><img width="50px" height="50px;" src="asset/img/1389435415272.gif" />Your album is being prepared...</h4>'});
+	var albums;
+	if(downloadType=="single"){
+		albums = [albumId];
+	}else if(downloadType=="multiple"){
+		albums = $("input:checkbox:checked").map(function() {
 				return $(this).val();
 			}).get();
-			$.post("service/MoveAlbum.php", {
-				"albums" : albums
-			}, function(response) {
-				$.unblockUI();
-				if (response == "fail") {
-					toastr.error("Opps, something wasn't right, Try again");
-				} else {
-					toastr.success('Album is moved sucessfully.');
-				}
-			});
-		} else {
-			$.unblockUI();
-			operation = "multiple";
-			$('#loginModal').foundation('reveal', 'open');
-		}
-	});
-}
-
-/**
- * Used to move all fb albums to google+
- */
-function moveAll() {
-	$.blockUI({
-		message : '<h4><img width="50px" height="50px;" src="asset/img/1389435415272.gif" />Your albums is being moved to google+...</h4>'
-	});
-	$.get("service/getToken.php", function(response) {
-		if (response == "1") {
-			var albums = $("input:checkbox").map(function() {
+	}else if(downloadType=="all"){
+		albums = $("input:checkbox").map(function() {
 				return $(this).val();
 			}).get();
-			$.post("service/MoveAlbum.php", {
-				"albums" : albums
-			}, function(response) {
-				$.unblockUI();
-				if (response == "fail") {
-					toastr.error("Opps, something wasn't right, Try again");
-				} else {
-					toastr.success('Album is moved sucessfully.');
-				}
+	}
+	$.post("service/DownloadAlbum.php", {"albums" : albums}, function(response) {
+		$.unblockUI();
+		if (response != "fail" && response.split(".")[1] == "zip") {
+			$(".startdownload").attr("href", "service/" + response);
+			$(".startdownload").click(function() {
+				$('#downloadModal').foundation('reveal', 'close');
 			});
+			$('#downloadModal').foundation('reveal', 'open');
 		} else {
-			$.unblockUI();
-			operation = "all";
-			$('#loginModal').foundation('reveal', 'open');
+			toastr.error("Opps, something wasn't right, Try again");
 		}
 	});
 }
 
 /**
- * Used to login into google+
+ * Used to move album to google+
+ * @param {moveType} moveType used to specify move type like single or multiple or all
+ * @param {albumId} albumId is the id of album being moved
  */
-function googleLogin() {
-	$.blockUI({message : '<h4><img width="50px" height="50px;" src="asset/img/1389435415272.gif" />Authenticating.......</h4>'});
-	$('#loginModal').foundation('reveal', 'close');
-	var sendData = {
-		"provider" : 'picasa',
-		"username" : $("#username").val(),
-		"password" : $("#password").val()
-	};
-	$.post("service/SetToken.php", sendData, function(response) {
+function moveAlbum(moveType,albumId) {
+	$.blockUI({message : '<h4><img width="50px" height="50px;" src="asset/img/1389435415272.gif" />Your album is being moved to google+...</h4>'});
+	var albums;
+	if(moveType=="single"){
+		albums = [albumId];
+	}else if(moveType=="multiple"){
+		albums = $("input:checkbox:checked").map(function() {
+				return $(this).val();
+			}).get();
+	}else if(moveType=="all"){
+		albums = $("input:checkbox").map(function() {
+				return $(this).val();
+			}).get();
+	}
+	$.post("service/MoveAlbum.php", {"albums" : albums}, function(response) {
+		
 		$.unblockUI();
-		if (response != "success") {
-			$('#loginModal').foundation('reveal', 'open');
-			toastr.error('Incorrect Google+ User ID or Password');
-		} else {
-			toastr.success('Authenticated successfully....');
-			// After successfully authentication resume the moving process
-			if (operation == "single") {
-				moveAlbum(id);
-			} else if (operation == "multiple") {
-				moveAlbums();
-			} else if (operation == "all") {
-				moveAll();
+		if (/google/i.test(response)){
+			window.location.href=response;
+		}else{
+			if (response != "success") {
+				toastr.error("Opps, something wasn't right, Try again");
+			} else {
+				toastr.success('Album is moved sucessfully.');
 			}
 		}
 	});
@@ -254,3 +119,5 @@ function logout() {
 		window.location.href = "index.php";
 	});
 }
+
+

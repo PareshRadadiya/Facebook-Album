@@ -67,7 +67,7 @@ require_once("service/Fbcredentials.php");
    <script type="text/javascript">
    
 			$(function(){
-					if(/chrom(e|ium)/.test(navigator.userAgent.toLowerCase())){
+				if(/chrom(e|ium)/.test(navigator.userAgent.toLowerCase())){
 						localStorage.setItem("page", "album");
 				}
 			
@@ -80,10 +80,9 @@ require_once("service/Fbcredentials.php");
 						prev: '#arrow_left',
 						next: '#arrow_right',
 						
-						after: function(last,current){
-							// console.log($(current).find('.light-text').html());
-						}
-					}
+					},
+					cssBackgroundSize: false,
+					backgroundSize: 'auto'
 				});
 				
 			
@@ -96,16 +95,17 @@ require_once("service/Fbcredentials.php");
 	 <div class="row" style="margin-top: 20px;">
    <div class="medium-4 large-4 columns supporticons">
       <ul class='button-group'><li>
-      	<a style="float: left;" href='javascript:downloadAlbum(<?php echo $_REQUEST["id"]; ?>)' class='medium hide-for-small fbstyle  button fi-download'> Download </a>
-      	<a style="float: left;"  href='javascript:downloadAlbum(<?php echo $_REQUEST["id"]; ?>)' class='small show-for-small fbstyle button fi-download'> Download </a>
-      	<a style="float: right;" href='javascript:moveAlbum(<?php echo $_REQUEST["id"]; ?>)' class='medium hide-for-small fbstyle  button fi-social-picasa'> Move</a>
-      	<a style="float: right;" href='javascript:moveAlbum(<?php echo $_REQUEST["id"]; ?>)' class='small show-for-small fbstyle  button fi-social-picasa'> Move</a> 
+      	<a style="float: left;" href='javascript:downloadAlbum("single",<?php echo $_REQUEST["id"]; ?>)' class='medium hide-for-small fbstyle  button fi-download'> Download </a>
+      	<a style="float: left;"  href='javascript:downloadAlbum("single",<?php echo $_REQUEST["id"]; ?>)' class='small show-for-small fbstyle button fi-download'> Download </a>
+      	<a style="float: right;" href='javascript:moveAlbum("single",<?php echo $_REQUEST["id"]; ?>)' class='medium hide-for-small fbstyle  button fi-social-picasa'> Move</a>
+      	<a style="float: right;" href='javascript:moveAlbum("single",<?php echo $_REQUEST["id"]; ?>)' class='small show-for-small fbstyle  button fi-social-picasa'> Move</a> 
       </li></ul>
    </div>
   </div>
   
 <?php
-	if($user){
+
+	if(isset($user)){
 		if(isset($_REQUEST["id"])){
 			$photoList = $facebook -> api('/' . $_REQUEST["id"] . '/photos', 'GET');
 			$albumDetail = $facebook -> api('/' . $_REQUEST["id"] , 'GET');
@@ -136,14 +136,6 @@ require_once("service/Fbcredentials.php");
 </body>
 
   </html>
-
-		 <div style="background-image: url('asset/img/google-plus-social.jpg');background-size:contain; z-index: 9999" id="loginModal" class="reveal-modal  small" data-reveal>
-  <p style="color: #D3290E;" class="lead"><img src="asset/img/GooglePlus_red-380x252.jpg" width="50" height="50"/> Sigin with google+</p>
-<input type="text" id="username" placeholder="User name" />
-<input type="password"id="password"  placeholder="Password" />
-<input type="button" value="Sigin" class="button alert small" onclick="googleLogin();"/>
-  <a class="close-reveal-modal">&#215;</a>
-</div>
  <div  style="background-image: url('asset/img/google-plus-social.jpg');background-size:contain; z-index: 9999" id="downloadModal" class="reveal-modal small" data-reveal>
   <p style="color: #133783;" class="lead "><img src="asset/img/facebook.png" width="50" height="50"/> Your album is ready to download</p>
 <a class="startdownload button fbstyle small fi-download">  Start Download</a>

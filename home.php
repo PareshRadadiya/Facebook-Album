@@ -38,6 +38,7 @@ if(localStorage.getItem("page")){
 
  $.ajaxSetup({cache: true ,cookie:true,oauth:true});
   $.getScript('//connect.facebook.net/en_UK/all.js', function(){
+ 
     FB.init({
       appId: '209721652515800',
      
@@ -68,13 +69,14 @@ if(localStorage.getItem("page")){
     <aside class="left-off-canvas-menu">
       <ul class="off-canvas-list">
         <li><label>Download</label></li>
-        <li><a href="http://foundation.zurb.com/learn/features.html">Download All</a></li>
-    <li><a href="http://foundation.zurb.com/learn/faq.html">Download Selected</a></li>
+           <li><a href="javascript:downloadAlbum('all')">Download All</a></li>
+          <li><a href="javascript:downloadAlbum('multiple')">Download Selected</a></li>
+       
       </ul>
        <ul class="off-canvas-list">
         <li><label>Move</label></li>
-       <li><a href="http://foundation.zurb.com/templates.html">Move All</a></li>
-    <li><a href="http://foundation.zurb.com/docs">Move Selected</a></li>
+      <li><a href="javascript:moveAlbum('all');">Move All</a></li>
+          <li><a href="javascript:moveAlbum('multiple')">Move Selected</a></li>
       </ul>
     </aside>
 
@@ -95,8 +97,8 @@ if(localStorage.getItem("page")){
         <a href="#" class="">Download</a>
         <ul class="dropdown">
         	
-          <li><a href="javascript:downloadAll()">Download All</a></li>
-          <li><a href="javascript:downloadAlbums()">Download Selected</a></li>
+          <li><a href="javascript:downloadAlbum('all')">Download All</a></li>
+          <li><a href="javascript:downloadAlbum('multiple')">Download Selected</a></li>
        
         </ul>
       </li>
@@ -105,8 +107,8 @@ if(localStorage.getItem("page")){
         <a href="#" class="">Move</a>
         <ul class="dropdown">
         	
-          <li><a href="javascript:moveAll();">Move All</a></li>
-          <li><a href="javascript:moveAlbums()">Move Selected</a></li>
+          <li><a href="javascript:moveAlbum('all');">Move All</a></li>
+          <li><a href="javascript:moveAlbum('multiple')">Move Selected</a></li>
          
         </ul>
       </li>  
@@ -125,16 +127,9 @@ if(localStorage.getItem("page")){
 <section id="main-content">
 		
   <div  class="row centered-text">
-    	<ul id="albums" class="large-block-grid-3"></ul>  
+    	<ul id="albums" class="large-block-grid-4"></ul>  
   </div>
   
-<div style="background-image: url('asset/img/google-plus-social.jpg');background-size:contain;" id="loginModal" class="reveal-modal small" data-reveal>
-<p style="color: #D3290E;" class="lead"><img src="asset/img/GooglePlus_red-380x252.jpg" width="50" height="50"/> Sigin with google+</p>
-<input type="text" id="username" placeholder="Email Id" />
-<input type="password"id="password"  placeholder="Password" />
-<input type="button" value="Sigin" class="button alert small" onclick="googleLogin();"/>
-<a class="close-reveal-modal">&#215;</a>
-</div>
 
 <div  style="background-image: url('asset/img/google-plus-social.jpg');background-size:contain;" id="downloadModal" class="reveal-modal small" data-reveal>
 <p style="color: #133783;" class="lead "><img src="asset/img/facebook.png" width="50" height="50"/> Your album is ready to download</p>
